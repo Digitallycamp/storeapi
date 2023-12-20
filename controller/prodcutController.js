@@ -86,20 +86,29 @@ const allProductController = (req, res)=> {
 
 const getProductById = (req, res)=> {
     const { productid} = req.params
+
+    if(!productid){
+        return res.status(404).json({ message: "No product ID to update"})
+    
+    }
+
+    const readProd = fs.readFileSync('./data/products.json', 'utf8')
+    const parsedProd = JSON.parse(readProd)
+    const findProd = parsedProd.find(prod => prod.productId === productid)
+
+        if(!findProd){
+            return res.status(404).json({ message: "No such product with that ID"})
+        }
+        
     try{
 
         const readProduct = fs.readFileSync('./data/products.json', 'utf8')
         const parsedProduct = JSON.parse(readProduct)
         const singleProducts = parsedProduct.find(product => product.productId === productid)
-        if(!singleProducts){
-            return res.status(500).json({ message: "success"})
-        }
-        res.status(500).json({
-            
-            message: "success",
-            data: singleProducts
+        console.log(singleProducts)
 
-        })
+              
+        res.status(200).json({message: 'success', data: singleProducts})
     }catch(error){
         res.status(500).json({
             message: error.message
@@ -111,18 +120,32 @@ const getProductById = (req, res)=> {
 
 const getProductsByUser = (req, res)=> {
     const { userId} = req.params;
+        console.log(userId)
+    if(!userId){
+        return res.status(400).json({ message: "You need a user ID"})
+    }
+
+    const readUser = fs.readFileSync('./data/users.json', 'utf-8')
+    const parseUser = JSON.parse(readUser)
+    const findUser = parseUser.find(user => user.userId === userId)
+
+    if(!findUser){
+        return res.status(404).json({ message: "No such user!"})
+    }
+
+
     try{
 
         const readProduct = fs.readFileSync('./data/products.json', 'utf8')
         const parsedProduct = JSON.parse(readProduct)
         const singleProducts = parsedProduct.filter(product => product.userId === userId)
         if(!singleProducts){
-            return res.status(500).json({ message: "No such user"})
+            return res.status(404).json({ message: "No product added by user"})
         }
-        res.status(500).json({
+        res.status(200).json({
             
             message: "success",
-            data: singleProducts
+            data:singleProducts
 
         })
     }catch(error){

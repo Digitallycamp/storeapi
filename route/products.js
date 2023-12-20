@@ -6,7 +6,7 @@ const {allProductController} = require('../controller/prodcutController')
 const productRouter = express.Router()
 
 productRouter.route('/:userId').post(prodcutController).get(getProductsByUser)
-productRouter.route('/').get(allProductController)
-productRouter.route('/:productid').get(getProductById).put(updateProuct).delete(deleteProduct)
+// productRouter.route('/').get(allProductController)
+productRouter.route('/p/:productid').get(getProductById).put(updateProuct).delete(deleteProduct)
 
 module.exports = productRouter
