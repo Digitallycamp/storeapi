@@ -1,11 +1,6 @@
 # storeapi
 A REST api for front-end devs to prototype, while waiting for the back-end team
-# Feature
- - Only Admin can delete user
- - Only admin can GET ALL products by cretate by Users
- - User can only GET ALL the product they created
- - Only loggedin users can create a product
- - Only loggedin users can DELETE the product they created
+
 
 resources
     register
