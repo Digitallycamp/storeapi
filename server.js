@@ -6,8 +6,11 @@ const cors = require('cors')
 
 const app = express();
 const port = 3310;
+app.use(cors({corsOptions: {
+    origin: "http://127.0.0.1:5500",
+    optionsSuccessStatus: 200
+}}))
 app.use(express.json())
-app.use(cors())
 
 app.set('view engine', 'ejs');
 
