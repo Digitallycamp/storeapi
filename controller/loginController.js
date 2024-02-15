@@ -5,7 +5,7 @@ const loginUserController = (req, res) => {
     const { email, usersname, password} = req.body
 
     if((!email || !usersname) && !password ){
-        res.status(404).json({message: "Username or email and password can needed!!"})
+        res.status(404).json({message: "Username or email and password  needed!!"})
         return 
     }
 

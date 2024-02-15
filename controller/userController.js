@@ -8,8 +8,8 @@ const hashPass = require('../utils/pass_encryption')
 /* Create a user */
  const createUser = (req, res) =>{
      try{
-       const {usersname, name,  email, avater, password, role } = req.body;
-       if(!usersname, !name || !email || !avater || !password || !role){
+       const {usersname, name,  email, avater, password } = req.body;
+       if(!usersname, !name || !email || !avater || !password ){
            res.status(404).json({
                message: 'All values are required'
            })
@@ -41,7 +41,7 @@ const hashPass = require('../utils/pass_encryption')
         email,
         avater,
         password: hashPass(password),
-        role
+        role: "vendor"
     };
 
     parsedUser.push(newUser)

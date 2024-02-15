@@ -14,10 +14,10 @@ const prodcutController = (req, res)=> {
         image,
         ratings,
         category,
-        role
+        
         } = req.body
 
-        if(!title || !description || !amount || !image || !ratings || !category || !role){
+        if(!title || !description || !amount || !image || !ratings || !category){
             res.status(404).json({message: "All fileds are required"})
             return
         }
@@ -42,7 +42,6 @@ const prodcutController = (req, res)=> {
                 image,
                 ratings,
                 category,
-                role,
                 userId
                
             }
