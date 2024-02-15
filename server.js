@@ -12,12 +12,15 @@ app.use(cors({corsOptions: {
 }}))
 app.use(express.json())
 
+app.use(express.static("public"))
 app.set('view engine', 'ejs');
+
 
 const date = new Date().getFullYear();
 app.get('/', (req, res)=> {
     res.render('pages/index', {
-        date: date
+        date: date,
+        
     });
 })
 

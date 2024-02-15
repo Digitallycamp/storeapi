@@ -47,10 +47,10 @@ const prodcutController = (req, res)=> {
             }
 
             parsedData.push(product )
-            const createProduct =  fs.writeFileSync('./data/products.json', JSON.stringify(parsedData))
+             fs.writeFileSync('./data/products.json', JSON.stringify(parsedData))
             res.status(201).json({
                 message: "Product created succcessfully",
-                createProduct
+               product
             })
     }catch(error){
         res.status(500).json({message: error.message})

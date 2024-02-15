@@ -42,6 +42,11 @@
             gap: 16px;
         }
 
+        img {
+            width: 100%;
+            max-width: 100%;
+        }
+
         @media only screen  and (max-width:1024px){
             .resources ul, .route ul {
             padding: 0 16px;
@@ -88,6 +93,10 @@
                     <li><a href="#">/api/v1/products</a></li>
                     <li><a href="#">/api/v1/user</a></li>
                 </ul>
+                <h2>Create User Request body</h2>
+                <img src="/images/createuser.png">
+                <h2>Create product Request body</h2>
+                <img src="/images/createproduct.png">
             </div>
             <div class="route">
                 <h2>Routes</h2>
@@ -96,7 +105,8 @@
                     <li><strong>GET</strong><a href="https://store-api-ycui.onrender.com/api/v1/products/userId" >/api/v1/products/userId</a><span>// GET all products by User</span></li>
                     <li><strong>GET</strong><a href="https://store-api-ycui.onrender.com/api/v1/products/p/productId">/api/v1/products/p/productId</a><span>// GET product by ID</span></li>
                     <li><strong>POST</strong><a href="https://store-api-ycui.onrender.com/api/v1/products/userId">/api/v1/products/userId</a><span>// CREATE product you need to be a user</span></li>
-                    <li><strong>POST</strong><a href="https://store-api-ycui.onrender.com/api/v1/user">/api/v1/user</a><span>// CREATE user</span></li>
+                    <li><strong>POST</strong><a href="https://store-api-ycui.onrender.com/api/v1/user">/api/v1/user</a><span>// CREATE user .Save the user ID , when you loose it you wont recover it.</span>
+                    </li>
                     <li><strong>PUT</strong><a href="https://store-api-ycui.onrender.com/api/v1/products/p/productId">/api/v1/products/p/productId</a><span>// UPDATE product</span></li>
                     <li><strong>DELETE</strong><a href="https://store-api-ycui.onrender.com/api/v1/products/p/productId">/api/v1/products/p/productId</a><span>// DELETE product</span></li>
                 </ul>
