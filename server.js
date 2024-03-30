@@ -3,13 +3,11 @@ const userRouter = require('./route/users')
 const loginRouter = require('./route/login');
 const productRouter = require('./route/products')
 const cors = require('cors')
+const corsOptions = require('./config/corsOptions')
 
 const app = express();
 const port = 3310;
-app.use(cors({corsOptions: {
-    origin: "http://127.0.0.1",
-    optionsSuccessStatus: 200
-}}))
+app.use(cors(corsOptions))
 app.use(express.json())
 
 app.use(express.static("public"))
