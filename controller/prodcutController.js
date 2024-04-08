@@ -24,9 +24,11 @@ const prodcutController = (req, res)=> {
 
     
     try{
-        const readFile = fs.readFileSync('./data/products.json', 'utf8')
+        // const readFile = fs.readFileSync('./data/products.json', 'utf8')
+        const readFile = fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', 'utf8')
         const parsedData = JSON.parse(readFile)
-        const readUser = fs.readFileSync('./data/users.json', 'utf8')
+        // const readUser = fs.readFileSync('./data/users.json', 'utf8')
+        const readUser = fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', 'utf8')
         const parsedUser = JSON.parse(readUser)
         const findUser = parsedUser.find(user => user.userId === userId)
         if(!findUser){
@@ -47,7 +49,8 @@ const prodcutController = (req, res)=> {
             }
 
             parsedData.push(product )
-             fs.writeFileSync('./data/products.json', JSON.stringify(parsedData))
+            //  fs.writeFileSync('./data/products.json', JSON.stringify(parsedData))
+             fs.writeFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', JSON.stringify(parsedData))
             res.status(201).json({
                 message: "Product created succcessfully",
                product
@@ -65,7 +68,8 @@ const prodcutController = (req, res)=> {
 const allProductController = (req, res)=> {
     try{
 
-        const readProducts= fs.readFileSync('./data/products.json', 'utf8')
+        // const readProducts= fs.readFileSync('./data/products.json', 'utf8')
+        const readProducts= fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', 'utf8')
         const parsedProduct = JSON.parse(readProducts)
         if(parsedProduct.length === 0 ){
             res.status(404).json({message: 'No products in db'})
@@ -91,7 +95,8 @@ const getProductById = (req, res)=> {
     
     }
 
-    const readProd = fs.readFileSync('./data/products.json', 'utf8')
+    // const readProd = fs.readFileSync('./data/products.json', 'utf8')
+    const readProd = fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', 'utf8')
     const parsedProd = JSON.parse(readProd)
     const findProd = parsedProd.find(prod => prod.productId === productid)
 
@@ -101,7 +106,8 @@ const getProductById = (req, res)=> {
         
     try{
 
-        const readProduct = fs.readFileSync('./data/products.json', 'utf8')
+        // const readProduct = fs.readFileSync('./data/products.json', 'utf8')
+        const readProduct = fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', 'utf8')
         const parsedProduct = JSON.parse(readProduct)
         const singleProducts = parsedProduct.find(product => product.productId === productid)
         console.log(singleProducts)
@@ -124,7 +130,8 @@ const getProductsByUser = (req, res)=> {
         return res.status(400).json({ message: "You need a user ID"})
     }
 
-    const readUser = fs.readFileSync('./data/users.json', 'utf-8')
+    // const readUser = fs.readFileSync('./data/users.json', 'utf-8')
+    const readUser = fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', 'utf-8')
     const parseUser = JSON.parse(readUser)
     const findUser = parseUser.find(user => user.userId === userId)
 
@@ -135,7 +142,8 @@ const getProductsByUser = (req, res)=> {
 
     try{
 
-        const readProduct = fs.readFileSync('./data/products.json', 'utf8')
+        // const readProduct = fs.readFileSync('./data/products.json', 'utf8')
+        const readProduct = fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', 'utf8')
         const parsedProduct = JSON.parse(readProduct)
         const singleProducts = parsedProduct.filter(product => product.userId === userId)
         if(!singleProducts){
@@ -181,7 +189,8 @@ const updateProuct = (req, res)=> {
 
 
     try {
-        const readFile  =  fs.readFileSync('./data/products.json', 'utf8')
+        // const readFile  =  fs.readFileSync('./data/products.json', 'utf8')
+        const readFile  =  fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', 'utf8')
         const parsedData = JSON.parse(readFile)
         let data = parsedData.find(product => product.productId === productid)
 
@@ -201,7 +210,8 @@ const updateProuct = (req, res)=> {
         newProducts.push(updatedProduct)
     
 
-        fs.writeFileSync('./data/products.json', JSON.stringify(newProducts))
+        // fs.writeFileSync('./data/products.json', JSON.stringify(newProducts))
+        fs.writeFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', JSON.stringify(newProducts))
         res.status(200).json({message: 'product updated sucessfully', data: newProducts})
        
     }catch(error){
@@ -219,7 +229,8 @@ const deleteProduct = (req, res)=> {
     }
     
     try{
-        const readAllFiles  =  fs.readFileSync('./data/products.json', 'utf8')
+        // const readAllFiles  =  fs.readFileSync('./data/products.json', 'utf8')
+        const readAllFiles  =  fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', 'utf8')
         const parsedDataFile = JSON.parse(readAllFiles)
         const findProduct  = parsedDataFile.find(product => product.productId === productid)
     
@@ -231,7 +242,8 @@ const deleteProduct = (req, res)=> {
         const data = parsedDataFile.filter(product => product.productId !== productid)
 
          
-        fs.writeFileSync('./data/products.json', JSON.stringify(data));
+        // fs.writeFileSync('./data/products.json', JSON.stringify(data));
+        fs.writeFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/products.json', JSON.stringify(data));
         res.status(204).json({message: 'product DELETED sucessfully!', data:findProduct  })
        
     }catch(error){
