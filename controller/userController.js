@@ -23,8 +23,7 @@ const hashPass = require('../utils/pass_encryption')
         })
         return
     }
-    // const users = fs.readFileSync('./data/users.json', 'utf8')
-    const users = fs.readFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/users.json', 'utf8')
+    const users = fs.readFileSync('./data/users.json', 'utf8')
     const parsedUser = JSON.parse(users)
     const findUser = parsedUser.find( user => user.usersname === usersname)
     console.log(findUser)
@@ -46,7 +45,7 @@ const hashPass = require('../utils/pass_encryption')
     };
 
     parsedUser.push(newUser)
-    fs.writeFileSync('https://s3.eu-north-1.amazonaws.com/techathon3.0storage/Techathon+Js+Special/data/users.json', JSON.stringify(parsedUser))
+    fs.writeFileSync('./data/users.json', JSON.stringify(parsedUser))
     res.status(201).json({
         message: "Account created successfully!",
        data : newUser
