@@ -5,6 +5,7 @@ const productRouter = require('./route/products')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 
+
 const app = express();
 const port = 3310;
 app.use(cors(corsOptions))
