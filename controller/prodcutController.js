@@ -69,25 +69,25 @@ const prodcutController = async (req, res)=> {
 
 
 
-const allProductController = async (req, res)=> {
-    try{
+// const allProductController = async (req, res)=> {
+//     try{
 
-        const readProducts= fs.readFileSync('./data/products.json', 'utf8')
-        const parsedProduct = JSON.parse(readProducts)
-        if(parsedProduct.length === 0 ){
-            res.status(404).json({message: 'No products in db'})
-            return
-        }
-        res.status(200).json({
-            length: parsedProduct.length ,
-            message: "Success" ,
-            data: parsedProduct
-        })
-    }catch(error){
-        res.status(500).json({message: error.message})
-    }
+//         const readProducts= fs.readFileSync('./data/products.json', 'utf8')
+//         const parsedProduct = JSON.parse(readProducts)
+//         if(parsedProduct.length === 0 ){
+//             res.status(404).json({message: 'No products in db'})
+//             return
+//         }
+//         res.status(200).json({
+//             length: parsedProduct.length ,
+//             message: "Success" ,
+//             data: parsedProduct
+//         })
+//     }catch(error){
+//         res.status(500).json({message: error.message})
+//     }
 
-}
+// }
 
 
 const getProductById =  async (req, res)=> {
@@ -141,29 +141,46 @@ const getProductsByUser = async (req, res)=> {
 
     // const readUser = fs.readFileSync('./data/users.json', 'utf-8')
     // const parseUser = JSON.parse(readUser)
-    const sql_SelectAllUsers = 'SELECT * FROM users'
-    const allUsers = await pool.query(sql_SelectAllUsers)
-    const findUser = allUsers.rows.find(user => user.userid === userId)
+            // const sql_SelectAllUsers = 'SELECT * FROM users'
+            // const allUsers = await pool.query(sql_SelectAllUsers)
+            // const findUser = allUsers.rows.find(user => user.userid === userId)
 
-    if(!findUser){
-        return res.status(404).json({ message: "No such user!"})
-    }
+            // if(!findUser){
+            //     return res.status(404).json({ message: "No such user!"})
+            // }
+
+            const text = `SELECT 1 FROM users WHERE userid = $1`;
+            const values = [userId];
+            const users = await pool.query(text, values)
+            // const findUser = users.rows.find((user)=> user.userid === userId )
+        
+            // if(!findUser){
+            //     return res.status(404).json({ message: "No such user!"})
+            // }
+            if(users.rowCount === 0){
+                return res.status(404).json({ message: "No such user!"})
+              
+            }
+         
 
 
     try{
 
         // const readProduct = fs.readFileSync('./data/products.json', 'utf8')
         // const parsedProduct = JSON.parse(readProduct)
-        const sql_selectProduct =  'SELECT * FROM products';
-        const allProducts = await pool.query(sql_selectProduct)
-        const userProducts = allProducts.rows.filter(product => product.userid === userId)
-        if(!userProducts){
+            // const sql_selectProduct =  'SELECT * FROM products';
+            // const allProducts = await pool.query(sql_selectProduct)
+            // const userProducts = allProducts.rows.filter(product => product.userid === userId)
+        const text = 'SELECT * FROM products WHERE userid= $1';
+        const values = [userId]
+        const userProducts = await pool.query(text, values)
+        if(userProducts.rowCount=== 0){
             return res.status(404).json({ message: "No product added by user"})
         }
         res.status(200).json({
             
             message: "success",
-            data:userProducts
+            data:userProducts.rows
 
         })
     }catch(error){
@@ -285,4 +302,4 @@ const deleteProduct = async (req, res)=> {
 
 }
 
-module.exports = {prodcutController, allProductController, getProductById, getProductsByUser, updateProuct, deleteProduct}
+module.exports = {prodcutController, getProductById, getProductsByUser, updateProuct, deleteProduct}
