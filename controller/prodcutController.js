@@ -149,9 +149,9 @@ const getProductsByUser = async (req, res)=> {
             //     return res.status(404).json({ message: "No such user!"})
             // }
 
-            const text = `SELECT 1 FROM users WHERE userid = $1`;
-            const values = [userId];
-            const users = await pool.query(text, values)
+            const Usertext = `SELECT * FROM users WHERE userid = $1`;
+            const Uservalues = [userId];
+            const users = await pool.query(Usertext, Uservalues)
             // const findUser = users.rows.find((user)=> user.userid === userId )
         
             // if(!findUser){
