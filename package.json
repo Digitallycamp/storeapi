@@ -2,10 +2,10 @@
 	"name": "storeapi",
 	"version": "1.0.0",
 	"description": "An API for front-end devs to prototype",
-	"main": "server.js",
+	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "nodemon index.js"
+		"dev": "node index.js"
 	},
 	"author": "Digitally virtual academy",
 	"license": "ISC",
