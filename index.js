@@ -16,9 +16,10 @@ app.set('view engine', 'ejs');
 
 const date = new Date().getFullYear();
 app.get('/', (req, res) => {
-	res.render('pages/index', {
-		date: date,
-	});
+	// res.render('pages/index', {
+	// 	date: date,
+	// });
+	res.send('Welcome to practical API');
 });
 
 app.use('/api/v1/user', userRouter);
